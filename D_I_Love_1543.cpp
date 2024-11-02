@@ -46,28 +46,23 @@ void solve()
         {
             t += s[r][j];
         }
-        cout << t << endl;
         for (int i = r + 1; i < h - r; i++)
         {
             t += s[i][w - 1 - r];
         }
-        cout << t << endl;
         for (int j = w - 2 - r; j >= r; j--)
         {
             t += s[h - 1 - r][j];
         }
-        cout << t << endl;
         for (int i = h - 2 - r; i >= r; i--)
         {
             t += s[i][r];
         }
-        cout << t << endl;
 
         t += t.substr(0, 3);
 
         for (int i = 0; i < t.size(); i++)
         {
-            cout << i << " " << t.substr(i, 4) << endl;
             if (t.substr(i, 4) == "1543")
                 ans++;
         }
