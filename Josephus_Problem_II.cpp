@@ -34,7 +34,7 @@ signed main(void)
 
     return 0;
 }
-vector<int> josephus(int n)
+vector<int> josephus(int n, int k)
 {
     indexed_set people;
     vector<int> elimination_order;
@@ -48,7 +48,7 @@ vector<int> josephus(int n)
 
     while (!people.empty())
     {
-        index = (index + 1) % people.size();
+        index = (index + k) % people.size();
 
         auto it = people.find_by_order(index);
         elimination_order.push_back(*it);
@@ -60,10 +60,10 @@ vector<int> josephus(int n)
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
 
-    vector<int> ans = josephus(n);
+    vector<int> ans = josephus(n, k);
     for (int i : ans)
         cout << i << " ";
 }
