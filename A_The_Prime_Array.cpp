@@ -36,4 +36,25 @@ void solve()
     vi nums(n);
     for (int &i : nums)
         cin >> i;
+
+    if (nums[0] == 1)
+        nums[0]++;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (nums[i] == 1)
+            nums[i]++;
+
+        while (nums[i] % nums[i - 1] == 0)
+        {
+            nums[i]++;
+        }
+    }
+
+    for (int i : nums)
+        cout << i << " ";
+    cout << endl;
+
+    // 1 1 3 2 3
+    // 2 1 3
 }
