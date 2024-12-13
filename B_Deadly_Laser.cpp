@@ -35,11 +35,8 @@ signed main(void)
 
     return 0;
 }
-
-void solve(int tc)
+void BFS()
 {
-    // function<int(int, int)> solve = [&](int i, int j) -> int
-
     int n, m, sx, sy, d;
     cin >> n >> m >> sx >> sy >> d;
 
@@ -82,4 +79,71 @@ void solve(int tc)
 
     cout << -1 << endl;
     return;
+}
+
+void solve(int tc)
+{
+    // function<int(int, int)> solve = [&](int i, int j) -> int
+    int n, m, sx, sy, d;
+    cin >> n >> m >> sx >> sy >> d;
+    bool f = false, s = false;
+
+    if (abs(sx - n) + abs(sy - m) <= d)
+    {
+        cout << -1 << endl;
+        return;
+    }
+
+    for (int i = 1; i < m; i++)
+    {
+        int x = n;
+        int y = i;
+
+        if (abs(sx - x) + abs(sy - y) <= d)
+        {
+            f = true;
+        }
+    }
+
+    for (int i = 1; i < m; i++)
+    {
+        int x = 1;
+        int y = i;
+
+        if (abs(sx - x) + abs(sy - y) <= d)
+        {
+            s = true;
+        }
+    }
+
+    for (int i = 1; i < n; i++)
+    {
+        int x = i;
+        int y = m;
+
+        if (abs(sx - x) + abs(sy - y) <= d)
+        {
+            s = true;
+        }
+    }
+
+    for (int i = 1; i < n; i++)
+    {
+        int x = i;
+        int y = 1;
+
+        if (abs(sx - x) + abs(sy - y) <= d)
+        {
+            f = true;
+        }
+    }
+
+    if (f && s)
+    {
+        cout << -1 << endl;
+        return;
+    }
+
+    int ans = n + m - 2;
+    cout << ans << endl;
 }
