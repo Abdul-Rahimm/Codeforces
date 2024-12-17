@@ -47,7 +47,7 @@ void solve()
         }
         else
         {
-            ans = (row * row) + 1 + (col - 1);
+            ans = (row - 1) * (row - 1) + col;
         }
     }
     else
