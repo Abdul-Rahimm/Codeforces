@@ -25,42 +25,65 @@ signed main(void)
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    cin >> tc;
 
     while (tc--)
         solve();
 
     return 0;
 }
+bool isPossible(int mid, vi &nums, int k)
+{
+    int count = 0;
+    int total = 0;
 
+    for (int i = 0; i < nums.size();)
+    {
+        while (i < nums.size() && total + nums[i] <= k)
+        {
+            total += nums[i];
+            i++;
+        }
+
+        count++;
+        total = 0;
+        // i++;
+    }
+
+    return count <= mid;
+}
 void solve()
 {
-    int row, col;
-    cin >> row >> col;
+    // freopen("cowdance.in", "r", stdin);
+    int n, tmax;
+    cin >> n >> tmax;
+
+    // freopen("cowdance.out", "w", stdout);
+
+    vi nums(n);
+    for (int &i : nums)
+        cin >> i;
+
+    sort(all(nums));
+
+    int l = 1;
+    int r = *max_element(nums.begin(), nums.end());
     int ans;
 
-    if (row > col)
+    while (l <= r)
     {
-        if (row % 2 == 0)
+        int mid = (l + r) / 2;
+
+        if (isPossible(mid, nums, tmax))
         {
-            ans = (row * row) - (col - 1);
+            ans = mid;
+            cout << "--> ";
+            r = mid - 1;
         }
         else
-        {
-            ans = (row * row) + 1 + (col - 1);
-        }
-    }
-    else
-    {
-        if (col % 2 == 1)
-        {
-            ans = (col * col) - (row - 1);
-        }
-        else
-        {
-            ans = (col - 1) * (col - 1) + row;
-        }
+            l = mid + 1;
+
+        cout << l << " " << r << " " << mid << endl;
     }
 
-    cout << ans << endl;
+    cout << ans;
 }

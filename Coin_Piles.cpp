@@ -18,49 +18,35 @@ typedef vector<int> vi;
 typedef vector<vi> vii;
 const int mod = 1e9 + 7;
 
-void solve();
+void solve(int i);
 
 signed main(void)
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
     int tc = 1;
     cin >> tc;
 
-    while (tc--)
-        solve();
+    for (int i = 1; i <= tc; i++)
+        solve(i);
 
     return 0;
 }
 
-void solve()
+void solve(int tc)
 {
-    int row, col;
-    cin >> row >> col;
-    int ans;
+    // function<int(int, int)> solve = [&](int i, int j) -> int
 
-    if (row > col)
+    int a, b;
+    cin >> a >> b;
+
+    int sum = a + b;
+
+    if (sum % 3 == 0 && (min(a, b) * 2 >= max(a, b)))
     {
-        if (row % 2 == 0)
-        {
-            ans = (row * row) - (col - 1);
-        }
-        else
-        {
-            ans = (row * row) + 1 + (col - 1);
-        }
+        cout << "YES" << endl;
     }
     else
-    {
-        if (col % 2 == 1)
-        {
-            ans = (col * col) - (row - 1);
-        }
-        else
-        {
-            ans = (col - 1) * (col - 1) + row;
-        }
-    }
-
-    cout << ans << endl;
+        cout << "NO" << endl;
 }
