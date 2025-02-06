@@ -31,7 +31,12 @@ signed main(void)
 
     return 0;
 }
-
+void print(vector<int> &nums)
+{
+    for (int i : nums)
+        cout << i << " ";
+    cout << endl;
+}
 void solve()
 {
     int n;
@@ -42,7 +47,7 @@ void solve()
     cin >> first;
     nums.push_back(first);
 
-    forn(0, n - 1)
+    for (int x = 0; x < n - 1; x++)
     {
         int a;
         cin >> a;
@@ -50,20 +55,32 @@ void solve()
 
         int sz = nums.size();
 
-        for (int j = 0; j < sz; j++)
-        {
-            if (a < nums[j])
-            {
-                nums[j] = a;
-                status = true;
-                break;
-            }
-        }
-
-        if (!status)
+        // change from linear search to binary search
+        if (a >= nums[sz - 1])
         {
             nums.push_back(a);
+            continue;
         }
+
+        int i = 0;
+        int j = sz - 1;
+        int save;
+
+        while (i <= j)
+        {
+            int mid = (i + j) / 2;
+            if (a < nums[mid])
+            {
+                save = mid;
+                j = mid - 1;
+            }
+            else
+            {
+                i = mid + 1;
+            }
+        }
+        nums[save] = a;
+        // print(nums);
     }
 
     cout << nums.size();
