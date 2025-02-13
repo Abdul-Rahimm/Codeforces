@@ -41,25 +41,32 @@ void solve(int tc)
     int n, k, sum;
     cin >> n >> k >> sum;
 
-    if ((k * (k + 1)) / 2 > sum)
+    int sumOfFirstk = (k * (k + 1)) / 2;
+    int sumofLastk = ((n * (n + 1)) / 2) - (((n - k) * ((n - k) + 1)) / 2);
+
+    if (sumOfFirstk > sum or sumofLastk < sum)
     {
         pn return;
+    }
+    else
+    {
+        py return;
     }
 
     // can choose k ints from 1 to n
     // sum of k numbers should be x
 
-    while (k > 0 and sum > 0 and n > 0)
-    {
-        int subs = min(sum, n);
+    // while (k > 0 and sum > 0 and n > 0)
+    // {
+    //     int subs = min(sum, n);
 
-        sum -= subs;
-        k--;
-        n--;
+    //     sum -= subs;
+    //     k--;
+    //     n--;
 
-        // cout << sum << " " << subs << " " << k << " " << n << endl;
-    }
+    //     // cout << sum << " " << subs << " " << k << " " << n << endl;
+    // }
 
-    if (sum == 0)
-        py else pn
+    // if (sum == 0)
+    //     py else pn
 }
