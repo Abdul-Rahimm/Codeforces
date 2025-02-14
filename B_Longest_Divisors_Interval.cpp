@@ -41,31 +41,18 @@ void solve(int tc)
     int n;
     cin >> n;
 
-    vector<int> st;
-
-    for (int i = 1; i * i <= n; i++)
+    if (n <= 2)
     {
-        if (n % i == 0)
-        {
-            st.push_back(i);
-            st.push_back(n / i);
-        }
-    }
-    sort(all(st));
-    int curr = 1;
-    int ans = 1;
-    for (int i = 0; i < st.size() - 1; i++)
-    {
-        if (st[i + 1] == st[i] + 1)
-        {
-            curr++;
-            ans = max(ans, curr);
-        }
-        else
-        {
-            curr = 1;
-        }
+        cout << n << endl;
+        return;
     }
 
-    cout << ans << endl;
+    for (int i = 1; i <= n; i++)
+    {
+        if (n % i != 0)
+        {
+            cout << i - 1 << endl;
+            return;
+        }
+    }
 }
