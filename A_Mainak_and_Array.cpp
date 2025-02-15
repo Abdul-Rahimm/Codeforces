@@ -38,40 +38,31 @@ void solve(int tc)
 {
     // function<int(int, int)> solve = [&](int i, int j) -> int
 
-    int n;
-    cin >> n;
+    int N;
+    cin >> N;
 
-    vi nums(n);
-    int mx = INT_MIN;
-    int mn = INT_MAX;
+    int A[N];
+    int ans = -1000000007;
 
-    for (int &i : nums)
+    for (int i = 0; i < N; ++i)
     {
-        cin >> i;
-        mn = min(mn, i);
-        mx = max(mx, i);
+        cin >> A[i];
     }
 
-    // cases
-    // smallest and largest already at correct pos
-    // largest at correct
-    // smallest at correct
-    // both not correct but can become correct
-    // both not correct and one can become correct (which to choose out of max min)
+    for (int i = 0; i < N; ++i)
+    {
+        ans = max(ans, A[(N + i - 1) % N] - A[i]);
+    }
 
-    if ((nums[0] == mn and nums[n - 1] == mx) or (nums[0] == mn) or (nums[n - 1] == mx))
+    for (int i = 1; i < N; ++i)
     {
-        cout << mx - mn << endl;
-        return;
+        ans = max(ans, A[i] - A[0]);
     }
-    else
+
+    for (int i = 0; i < N - 1; ++i)
     {
-        int ans = nums[0] - nums[n - 1];
-        for (int i = 0; i < n - 1; i++)
-        {
-            ans = max(ans, abs(nums[i] - nums[i + 1]));
-        }
-        cout << ans << endl;
-        return;
+        ans = max(ans, A[N - 1] - A[i]);
     }
+
+    cout << ans << '\n';
 }
