@@ -38,14 +38,18 @@ void solve(int tc)
 {
     // function<int(int, int)> solve = [&](int i, int j) -> int
 
-    int n;
+    long long n, mn, mx;
     cin >> n;
-
-    if (n % 2 or n < 4)
-    {
+    if (n % 2 == 1 || n < 4)
         cout << -1 << endl;
-        return;
-    }
+    else
+    {
+        mn = n / 6;
+        if (n % 6 != 0)
+            mn++;
 
-    cout << (int)ceil(n / 6.0) << " " << (int)floor(n / 4.0) << endl;
+        mx = n / 4;
+
+        cout << mn << " " << mx << endl;
+    }
 }
