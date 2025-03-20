@@ -19,7 +19,7 @@ typedef vector<vi> vii;
 const int mod = 1e9 + 7;
 
 void solve(int i);
-// still remaining
+
 signed main(void)
 {
     ios::sync_with_stdio(false);
@@ -41,16 +41,37 @@ void solve(int tc)
     int n;
     cin >> n;
 
-    vi nums(n);
-    for (int &i : nums)
-        cin >> i;
-
-    int ans = INT_MAX;
-    for (int i = 1; i <= n; i++)
+    if (n == 1)
     {
-        if (abs(nums[i - 1] - i) > 0)
-            ans = min(ans, abs(nums[i - 1] - i));
+        cout << 0 << endl;
+        return;
+    }
+    else if (n == 2)
+    {
+        cout << -1 << endl;
+        return;
     }
 
-    cout << ans << endl;
+    int moves = 0;
+    while (n != 2 or n != 1)
+    {
+        if (n < 6)
+        {
+            n *= 2;
+        }
+        else
+        {
+            n /= 6;
+        }
+    }
+    if (n == 1)
+    {
+        cout << moves << endl;
+        return;
+    }
+    else if (n == 2)
+    {
+        cout << -1 << endl;
+        return;
+    }
 }

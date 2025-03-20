@@ -33,7 +33,7 @@ signed main(void)
 
     return 0;
 }
-
+// needs to be done
 void solve(int tc)
 {
     // function<int(int, int)> solve = [&](int i, int j) -> int

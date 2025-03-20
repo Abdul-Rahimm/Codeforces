@@ -19,7 +19,7 @@ typedef vector<vi> vii;
 const int mod = 1e9 + 7;
 
 void solve(int i);
-// still remaining
+
 signed main(void)
 {
     ios::sync_with_stdio(false);
@@ -36,21 +36,26 @@ signed main(void)
 
 void solve(int tc)
 {
-    // function<int(int, int)> solve = [&](int i, int j) -> int
-
     int n;
     cin >> n;
-
-    vi nums(n);
-    for (int &i : nums)
+    vi a(n);
+    for (int &i : a)
         cin >> i;
-
-    int ans = INT_MAX;
-    for (int i = 1; i <= n; i++)
+    sort(all(a));
+    // i am gonna say, dsnt matter combo now or later
+    int ans = 0;
+    int x = 0;
+    for (int i = 0; i < n - 1; i++)
     {
-        if (abs(nums[i - 1] - i) > 0)
-            ans = min(ans, abs(nums[i - 1] - i));
+        if (a[i] <= x)
+        {
+            ans += 1;
+            x = 0;
+        }
+        else
+        {
+            ans += a[i];
+            x += 1;
+        }
     }
-
-    cout << ans << endl;
 }

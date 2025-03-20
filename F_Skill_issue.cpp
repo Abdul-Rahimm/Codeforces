@@ -19,7 +19,7 @@ typedef vector<vi> vii;
 const int mod = 1e9 + 7;
 
 void solve();
-
+// needs to be done
 signed main(void)
 {
     ios::sync_with_stdio(false);
@@ -38,39 +38,57 @@ void solve()
     cin >> n >> d;
     priority_queue<int> maxheap;
     priority_queue<int, vi, greater<int>> minheap;
+    unordered_map<int, int> mp;
 
     vi nums(n);
     for (int &i : nums)
     {
         cin >> i;
+        mp[i]++;
         maxheap.push(i);
         minheap.push(i);
     }
 
     int count = 0;
     int ans = 0;
-
     while (count < n)
     {
+        if (mp.empty())
+            break;
+
         int high = maxheap.top();
         maxheap.pop();
         count++;
+        mp[high]--;
+        if (mp[high] == 0)
+            mp.erase(high);
+
+        if (mp.empty())
+            break;
 
         int mul = 2;
         while (high * mul <= d)
         {
             mul++;
         }
-        if (high * mul <= d)
-            break;
+
         mul--; // need these many more
         count += mul;
 
-        while (mul--)
+        if (count > n)
+            break;
+
+        forn(0, mul)
         {
             int curr = minheap.top();
             minheap.pop();
+            mp[curr]--;
+            if (mp[curr] == 0)
+                mp.erase(curr);
         }
+
+        if (mp.empty() and count != n)
+            break;
 
         ans++;
     }
