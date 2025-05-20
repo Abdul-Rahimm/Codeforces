@@ -33,26 +33,6 @@ signed main(void)
 
     return 0;
 }
-map<pair<int, int>, int> mp;
-int recur(int i, int end)
-{
-    if (i >= n)
-        return 0;
-    if (mp.find({i, end}) != mp.end())
-        return mp[{i, end}];
-
-    // take case | nums[i][0] --> startimg of current
-    int take = 0;
-    if (end == -1 or nums[i][0] >= end)
-    {
-        take = 1 + recur(i + 1, nums[i][1]);
-    }
-
-    // not take case
-    int nottake = recur(i + 1, end);
-
-    return mp[{i, end}] = max(take, nottake);
-}
 
 void solve()
 {
@@ -65,7 +45,25 @@ void solve()
         nums.push_back({a, b});
     }
 
-    sort(all(nums));
+    sort(all(nums), [](const vi &a, const vi &b)
+         { return a[1] < b[1]; });
 
-    cout << recur(0, -1);
+    int ans = 1;
+    int start = nums[0][0];
+    int end = nums[0][1];
+
+    forn(1, n)
+    {
+        int currStart = nums[i][0];
+        int currEnd = nums[i][1];
+
+        if (currStart >= end)
+        {
+            ans++;
+            start = currStart;
+            end = currEnd;
+        }
+    }
+
+    cout << ans;
 }
