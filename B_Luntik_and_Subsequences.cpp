@@ -41,23 +41,17 @@ void solve(int tc)
     int n;
     cin >> n;
 
-    int cnt2 = 0, cnt3 = 0;
-    while (n % 2 == 0)
+    vi nums(n);
+    int one = 0, zero = 0;
+
+    for (int &i : nums)
     {
-        n /= 2;
-        ++cnt2;
+        cin >> i;
+
+        one += i == 1;
+        zero += i == 0;
     }
-    while (n % 3 == 0)
-    {
-        n /= 3;
-        ++cnt3;
-    }
-    if (n == 1 && cnt2 <= cnt3)
-    {
-        cout << 2 * cnt3 - cnt2 << endl;
-    }
-    else
-    {
-        cout << -1 << endl;
-    }
+
+    cout << pow(2ll, zero) * one << endl; // not working
+    cout << (1ll << zero) * one << endl;
 }
