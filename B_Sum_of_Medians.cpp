@@ -38,40 +38,27 @@ void solve(int tc)
 {
     // function<int(int, int)> solve = [&](int i, int j) -> int
 
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
+    int ans = 0;
 
-    if (n == 1)
+    vi nums(n * k);
+    for (int &i : nums)
+        cin >> i;
+
+    int end = (n * k) - 1;
+    int start = 0;
+
+    for (int i = 0; i < k; i++)
     {
-        cout << 0 << endl;
-        return;
-    }
-    else if (n == 2)
-    {
-        cout << -1 << endl;
-        return;
+        // loop for (n+1)/2 times
+        for (int j = 0; j < (n) / 2; j++)
+        {
+            --end;
+        }
+        ans += nums[end];
+        --end;
     }
 
-    int moves = 0;
-    while (n != 2 or n != 1)
-    {
-        if (n < 6)
-        {
-            n *= 2;
-        }
-        else
-        {
-            n /= 6;
-        }
-    }
-    if (n == 1)
-    {
-        cout << moves << endl;
-        return;
-    }
-    else if (n == 2)
-    {
-        cout << -1 << endl;
-        return;
-    }
+    cout << ans << endl;
 }

@@ -42,14 +42,13 @@ void solve(int tc)
     cin >> n;
 
     vi nums(n);
+    int ans = 0;
+    int index = 1;
     for (int &i : nums)
-        cin >> i;
-
-    int ans = INT_MAX;
-    for (int i = 1; i <= n; i++)
     {
-        if (abs(nums[i - 1] - i) > 0)
-            ans = min(ans, abs(nums[i - 1] - i));
+        cin >> i;
+        ans = __gcd(ans, abs(i - index));
+        ++index;
     }
 
     cout << ans << endl;
