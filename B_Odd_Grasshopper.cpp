@@ -38,43 +38,23 @@ void solve(int tc)
 {
     // function<int(int, int)> solve = [&](int i, int j) -> int
 
-    int x0, n;
-    cin >> x0 >> n;
+    long long start, jumps;
+    cin >> start >> jumps;
 
-    int moves = n % 4; // 2 . 10 --> 9 and 10
+    long long final_pos;
+    if (jumps % 4 == 1)
+        final_pos = -jumps;
+    else if (jumps % 4 == 2)
+        final_pos = 1;
+    else if (jumps % 4 == 3)
+        final_pos = jumps + 1;
+    else if (jumps % 4 == 0)
+        final_pos = 0;
 
-        int start = n - moves;
-    int answer = x0;
+    if (start % 2 == 0)
+        final_pos = start + final_pos;
+    else
+        final_pos = start - final_pos;
 
-    for (int i = 0; i < moves; i++)
-    {
-        int add = start + i + 1;
-        if (x0 % 2 == 0)
-        {
-            // l r r
-            if (i == 0)
-            {
-                answer -= add;
-            }
-            else
-            {
-                answer += add;
-            }
-        }
-        if (x0 % 2 == 1)
-        {
-            // r l l
-            if (i == 0)
-            {
-                answer += add;
-            }
-            else
-            {
-                answer -= add;
-            }
-        }
-        cout << answer << " ";
-    }
-    cout << endl;
-    cout << answer << endl;
+    cout << final_pos << endl;
 }
