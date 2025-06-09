@@ -73,8 +73,8 @@ void solve(int tc)
             forn(0, n / 2)
             {
                 cout << 2 << " ";
-                nl
             }
+            nl
         }
         else
             pn
@@ -83,4 +83,32 @@ void solve(int tc)
     }
 
     // reaching this point means k >= 3
+    int count = 0;
+    while (n >= 3)
+    {
+        ++count;
+        n -= 3;
+    }
+    if (n > 0)
+        ++count;
+    py
+            cout
+        << count << endl;
+    forn(0, count - 2)
+    {
+        cout << 3 << " ";
+    }
+
+    if (n == 1 and x == 1)
+    {
+        cout << 2 << " " << 2 << endl;
+    }
+    else if (n > 0)
+    {
+        cout << 3 << " " << 1 << endl;
+    }
+    else if (n == 0)
+    {
+        cout << 3 << endl;
+    }
 }
