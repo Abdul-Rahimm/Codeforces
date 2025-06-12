@@ -40,13 +40,6 @@ void solve(int tc)
 
     int n, k, x;
     cin >> n >> k >> x;
-    if (k == 1 and x == 1)
-    {
-        pn return;
-    }
-
-    // either k is not 1 or x is not 1
-    //  k will always be >=x
 
     if (x != 1)
     {
@@ -60,55 +53,52 @@ void solve(int tc)
         nl return;
     }
 
-    // x is 1
-    // 2 and 3 can make any number >= 5
+    if (k == 1)
+    {
+        pn return;
+    }
+
     if (k == 2)
     {
-        // means only 2 is available
-        if (n % 2 == 0)
+        if (n % 2 == 1)
         {
-            py
-                    cout
-                << n / 2 << endl;
+            pn return;
+        }
+        else
+        {
+            py cout << n / 2 << endl;
             forn(0, n / 2)
             {
                 cout << 2 << " ";
             }
             nl
         }
-        else
-            pn
-
-                return;
+        return;
     }
 
-    // reaching this point means k >= 3
-    int count = 0;
-    while (n >= 3)
+    // k >= 3
+    if (n % 2 == 0)
     {
-        ++count;
-        n -= 3;
+        py
+                cout
+            << n / 2 << endl;
+        forn(0, n / 2)
+        {
+            cout << 2 << " ";
+        }
+        nl
     }
-    if (n > 0)
-        ++count;
-    py
-            cout
-        << count << endl;
-    forn(0, count - 2)
+    else
     {
+        py
+                cout
+            << n / 2 << endl;
+
         cout << 3 << " ";
-    }
-
-    if (n == 1 and x == 1)
-    {
-        cout << 2 << " " << 2 << endl;
-    }
-    else if (n > 0)
-    {
-        cout << 3 << " " << 1 << endl;
-    }
-    else if (n == 0)
-    {
-        cout << 3 << endl;
+        forn(0, (n / 2) - 1)
+        {
+            cout << 2 << " ";
+        }
+        nl
     }
 }
